@@ -1,5 +1,7 @@
 ## Getting started:
+1. Fork this Repository
 
+    ``` git clone https://github.com/fardousGamal/task-with-docker.git ```
 1. change the current directory to project path ex:
 
       ``` cd task-with-docker ```

@@ -11,7 +11,7 @@ services:
       dockerfile: nginx.dockerfile
     container_name: nginxServer
     ports:
-      - "8083:8083"
+      - "8081:80"
     volumes:
       - ./src:/var/www/html:delegated
     depends_on:
