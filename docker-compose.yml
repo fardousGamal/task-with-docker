@@ -21,8 +21,8 @@ services:
       - laravel
 
   mysql:
-    image: mysql
-    container_name: mysqlDB
+    image: mariadb
+    container_name: mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -32,7 +32,7 @@ services:
     volumes:
       - ./data:/var/lib/mysql
     ports:
-      - "5432:5432"
+      - "3307:3306"
     tty: true
     networks:
       - laravel
