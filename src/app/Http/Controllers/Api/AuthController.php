@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\loginRequest;
 use App\Http\Requests\registerRequest;
 use Illuminate\Http\Response;
+
 class AuthController extends Controller
 {
     //
@@ -23,12 +24,12 @@ class AuthController extends Controller
         $accessToken = $user->createToken('authToken')->plainTextToken;
         $user->access_token = $accessToken;
 
-            $data=[
-                'accessToken'=> $accessToken,
-                ]; 
-                
-                return $this->response(Response::HTTP_CREATED, 'Successfully created user!', $data);  
-          }
+        $data = [
+            'accessToken' => $accessToken,
+        ];
+
+        return $this->response(Response::HTTP_CREATED, 'Successfully created user!', $data);
+    }
 
     public function login(loginRequest $request)
     {
@@ -41,23 +42,21 @@ class AuthController extends Controller
         $user = auth()->user();
         $user->access_token = $accessToken;
 
-    $data=[
-            'accessToken'=> $accessToken,
-            ]; 
+        $data = [
+            'accessToken' => $accessToken,
+        ];
 
-            return $this->response(Response::HTTP_OK, 'User login successfully', $data); 
-        }
-        /**
- * Logout user (Revoke the token)
-*
-* @return [string] message
-*/
-public function logout(Request $request)
-{
-    $request->user()->tokens()->delete();
+        return $this->response(Response::HTTP_OK, 'User login successfully', $data);
+    }
+    /**
+     * Logout user (Revoke the token)
+     *
+     * @return [string] message
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
 
-    return $this->response(Response::HTTP_OK, 'User logout successfully'); 
-
-
-}
+        return $this->response(Response::HTTP_OK, 'User logout successfully');
+    }
 }

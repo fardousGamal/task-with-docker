@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +22,8 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); 
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::apiResource('/orders', OrderController::class)->only(['index','store']);  
+    Route::apiResource('/products', ProductController::class)->only(['index']);
 
 });
